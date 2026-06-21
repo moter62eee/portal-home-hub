@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开云 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f9fc;
+      color: #1b2b3a;
+      line-height: 1.6;
+      padding: 0 1.25rem;
+    }
+
+    .magazine {
+      max-width: 1120px;
+      margin: 2rem auto 4rem;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 60, 80, 0.12);
+      overflow: hidden;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(145deg, #0b3b4a 0%, #154c5e 60%, #1f6a7a 100%);
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3rem;
+      background: white;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transform: scaleY(0.4);
+      transform-origin: bottom;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: white;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #b6dee9;
+      max-width: 640px;
+      margin: 0.6rem auto 0;
+      padding: 0 1rem;
+      font-weight: 350;
+      letter-spacing: 0.01em;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      margin-top: 1.8rem;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.6rem;
+      border-radius: 60px;
+      color: #d2f0f5;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* content grid */
+    .content-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      padding: 2.5rem 2rem 1.5rem;
+    }
+
+    @media (min-width: 700px) {
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 2.2rem;
+        padding: 2.8rem 2.8rem 1.8rem;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 1.6rem 1.8rem 2rem;
+      box-shadow: 0 4px 12px rgba(13, 70, 88, 0.04);
+      border: 1px solid #e2edf2;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0, 60, 80, 0.07);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #0f4050;
+      margin-bottom: 0.9rem;
+      letter-spacing: -0.01em;
+      border-left: 4px solid #2b8c9e;
+      padding-left: 0.8rem;
+    }
+
+    .card p {
+      color: #2d4454;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      color: #1a6f7e;
+      font-weight: 450;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1.2rem;
+      margin: 1.4rem 0 0.6rem;
+    }
+
+    .feature-item {
+      background: #f0f7fa;
+      border-radius: 0.9rem;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      color: #1f5261;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-item::before {
+      content: "◈";
+      color: #2b8c9e;
+      font-size: 0.8rem;
+    }
+
+    /* 接入与场景段落 */
+    .bridge-section {
+      grid-column: 1 / -1;
+      background: #f2f9fc;
+      border-radius: 1.8rem;
+      padding: 1.8rem 2rem;
+      margin-top: 0.2rem;
+      border: 1px solid #d3e7ee;
+    }
+
+    .bridge-section h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #0b4352;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #3c9baa;
+      padding-left: 0.8rem;
+    }
+
+    .bridge-section p {
+      color: #284c5c;
+    }
+
+    .inline-link {
+      color: #146777;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #87becb;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .inline-link:hover {
+      color: #0b4a59;
+      border-bottom-color: #0b4a59;
+    }
+
+    /* faq 摘要样式 */
+    .faq-mini {
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #dce9ef;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .faq-mini .q {
+      font-weight: 450;
+      color: #104857;
+      font-size: 0.95rem;
+    }
+
+    .faq-mini .a {
+      color: #395f6e;
+      font-size: 0.9rem;
+      padding-left: 0.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-mini .a a {
+      color: #146777;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #9fcbd6;
+    }
+
+    .faq-mini .a a:hover {
+      color: #0a4756;
+    }
+
+    /* 尾页访问提示 */
+    .footer-visit {
+      background: #e9f2f6;
+      padding: 2.2rem 2rem;
+      text-align: center;
+      border-top: 1px solid #cfdfe7;
+    }
+
+    .footer-visit p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #1f4c5c;
+    }
+
+    .footer-visit .accent-link {
+      color: #0d5b6b;
+      font-weight: 500;
+      border-bottom: 1px solid #6faebb;
+      text-decoration: none;
+    }
+
+    .footer-visit .accent-link:hover {
+      color: #083c49;
+      border-bottom-color: #083c49;
+    }
+
+    /* 响应式 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.0rem;
+      }
+      .hero .sub {
+        font-size: 0.95rem;
+      }
+      .content-grid {
+        padding: 1.8rem 1rem 1.2rem;
+      }
+      .card {
+        padding: 1.2rem 1rem 1.5rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .bridge-section {
+        padding: 1.4rem 1.2rem;
+      }
+      .footer-visit {
+        padding: 1.8rem 1rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .content-grid {
+        padding: 3rem 3.2rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="magazine">
+    <!-- hero -->
+    <div class="hero">
+      <h1>开云 · 稳定入口</h1>
+      <div class="sub">一个持续维护的信息门户，提供清晰导航与背景说明，帮助使用者快速了解平台的结构与用途。</div>
+      <div class="badge">杂志专题 · 页面说明</div>
+    </div>
+
+    <!-- 三段介绍 + grid -->
+    <div class="content-grid">
+      <!-- card 1 -->
+      <div class="card">
+        <h2>背景与定位</h2>
+        <p><span class="highlight">开云</span> 最初是为满足特定信息聚合需求而搭建的实验性导航站点。经过多次调整，现已演变为一个以目录式内容为主、附带说明文档的轻量级平台。</p>
+        <p>整个页面体系围绕「清晰的分层结构」和「稳定的可访问性」两个核心原则展开，不堆叠动态模块，也不依赖外部复杂服务。每个页面都有明确的上下文，适合需要快速查阅信息分类的使用者。</p>
+      </div>
+
+      <!-- card 2 -->
+      <div class="card">
+        <h2>页面构成特点</h2>
+        <p>站点目前主要包含以下几个内容板块：</p>
+        <div class="feature-grid">
+          <div class="feature-item">主题分类索引</div>
+          <div class="feature-item">使用说明与提示</div>
+          <div class="feature-item">常见问题摘要</div>
+          <div class="feature-item">更新日志归档</div>
+        </div>
+        <p>所有页面均采用静态结构，加载速度快，不依赖 JavaScript 运行时。每个板块都配有简短的背景介绍，方便新访客理解页面用途。</p>
+      </div>
+
+      <!-- bridge 全宽段落（接入说明） -->
+      <div class="bridge-section">
+        <h2>从页面说明到访问路径</h2>
+        <p>对于首次接触该站点的使用者，推荐先从「页面说明」板块开始浏览。该部分详细解释了每个区域的功能定位、数据更新方式以及内容筛选逻辑。导航栏采用扁平化设计，所有主要页面都可以在两步之内到达。</p>
+        <p>在长期维护过程中，站点始终保留了一份基础版的 FAQ 摘要，内容涵盖访问方式、内容范围以及常见术语解释。下方即是一个节选示例。</p>
+      </div>
+
+      <!-- card 3: FAQ 摘要 -->
+      <div class="card" style="grid-column: span 1;">
+        <h2>FAQ 摘要</h2>
+        <div class="faq-mini">
+          <div class="q">▪ 内容多久更新一次？</div>
+          <div class="a">索引页面按实际需要更新，通常每季度做一次内容复核，确保链接和说明仍然有效。具体变动会在更新日志中记录。</div>
+          <div class="q">▪ 是否需要注册或登录？</div>
+          <div class="a">完全不需要。所有公开页面均可直接访问，不设置任何身份验证门槛。</div>
+          <div class="q">▪ 如何找到最新的说明？</div>
+          <div class="a">站内专门设立了一个说明归档区，同时你也可以通过 <a href="https://portal-home-ky.com" class="inline-link">开云</a> 主页面顶部的导航快速定位。</div>
+        </div>
+      </div>
+
+      <!-- card 4: 场景与稳定性 -->
+      <div class="card">
+        <h2>适用场景与稳定性</h2>
+        <p>不论是通过桌面浏览器还是移动设备访问，<span class="highlight">开云</span> 的页面都按照响应式原则进行排版，确保在不同屏幕尺寸下都有可读的布局。</p>
+        <p>由于采用纯前端静态方案，只要 DNS 解析正常、托管服务稳定，页面的可用性就非常高。过去几个季度里，该站点的累计不可用时间极短，适合作为长期书签使用。</p>
+        <p style="margin-top: 0.6rem;">站点还保留了一份简洁的环境说明文档，供有自建需求的用户参考部署方式。</p>
+      </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-visit">
+      <p>本页面为基于 <a href="https://portal-home-ky.com" class="accent-link">开云</a> 的杂志式介绍专题，所有板块均来源于站点现有内容结构。如果你希望浏览完整目录、查阅更详细的页面说明或了解更新历史，可直接通过上方链接前往主站。</p>
+    </div>
+  </div>
+</body>
+</html>
