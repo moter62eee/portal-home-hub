@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 从一段故事开始</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f5f7;
+            color: #2d3436;
+            line-height: 1.65;
+            padding: 28px 16px;
+        }
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        /* 卡片通用风格 */
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e2e6ea;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+            padding: 36px 30px;
+            margin-bottom: 28px;
+            transition: box-shadow 0.2s ease;
+        }
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        /* hero 区：短句开场 */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+        .hero .tagline {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: #636e72;
+            margin-bottom: 12px;
+            font-weight: 400;
+            word-break: break-word;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1e272e;
+            margin: 8px 0 14px 0;
+            line-height: 1.2;
+        }
+        .hero .sub {
+            font-size: 1rem;
+            color: #636e72;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 承接段落 */
+        .story p {
+            margin-bottom: 1.1rem;
+            font-size: 1rem;
+        }
+        .story p:last-child {
+            margin-bottom: 0;
+        }
+        .story .highlight-link {
+            color: #0b5b5c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b2bec3;
+            transition: color 0.2s, text-decoration-color 0.2s;
+            font-weight: 500;
+        }
+        .story .highlight-link:hover {
+            color: #0a3d3e;
+            text-decoration-color: #0b5b5c;
+        }
+
+        /* 特点列表 — 网格卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 8px;
+        }
+        .feature-item {
+            background: #fafbfc;
+            border: 1px solid #eaeef2;
+            border-radius: 14px;
+            padding: 20px 18px;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .feature-item:hover {
+            background: #f1f4f7;
+            border-color: #d1d8de;
+        }
+        .feature-item h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1e272e;
+        }
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #4a555a;
+            margin: 0;
+            line-height: 1.55;
+        }
+        .feature-item .feat-icon {
+            display: inline-block;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+            opacity: 0.7;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            text-align: center;
+            border-top: 1px solid #e2e6ea;
+            margin-top: 6px;
+            padding-top: 28px;
+        }
+        .closing p {
+            font-size: 0.98rem;
+            color: #4b565b;
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+        }
+        .closing .small-note {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .card {
+                padding: 24px 16px;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .feature-item {
+                padding: 16px 14px;
+            }
+            body {
+                padding: 18px 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero .tagline {
+                font-size: 0.95rem;
+            }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 辅助 */
+        .mt-1 { margin-top: 6px; }
+        .mb-1 { margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 开场短句 -->
+    <div class="card hero">
+        <div class="tagline">✦ 一次静默的相遇</div>
+        <h1>故事，从「爱」字开始</h1>
+        <div class="sub">游戏不只是消遣，也是叙事、探索和连接的另一种语言。</div>
+    </div>
+
+    <!-- 承接段落：从主题内容展开 -->
+    <div class="card story">
+        <p>许多年前，一位朋友对我说，他最喜欢的游戏不是画面最华丽的，而是那座可以让他慢慢走、慢慢想的小镇。没有强迫的任务，只有风、音乐和偶然的对话。那时我第一次意识到，数字世界里的“爱”不是宏大口号，而是藏在每一个可以回味的细节里。</p>
+        <p>后来我逐渐理解，所谓「爱游戏」，其实是一种对媒介本身的诚恳注视。它无意制造焦虑，也不追求在最短时间内掠夺注意力；它更愿意让人放慢节奏，去体察一段设计背后的思绪。在今天的碎片化浪潮里，这种注视显得愈发珍贵。</p>
+        <p>正因如此，我偶尔会打开 <a href="https://news-online-igame.com" class="highlight-link">爱游戏</a>，看看那些被认真整理过的资讯与解析。它像一间安静的资料室，不喧哗，却总能在你需要时提供一份经过梳理的参考。</p>
+        <p style="margin-top:16px;">—— 这也许就是“爱”最朴素的样子：持续关注，并保持理解。</p>
+    </div>
+
+    <!-- 特点列表：四个卡片 -->
+    <div class="card">
+        <div style="margin-bottom: 18px;">
+            <span style="font-weight: 500; color: #2d3436;">几个值得留意的特质</span>
+            <span style="color: #95a5a6; margin-left: 8px; font-size: 0.9rem;">—— 从日常体验中生长出来</span>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feat-icon">◈</div>
+                <h3>克制而清晰</h3>
+                <p>避免过度刺激的反馈循环，界面与叙事留出呼吸感，让选择回归自主。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feat-icon">◈</div>
+                <h3>记录而非消耗</h3>
+                <p>资讯以整理和索引为主，不鼓励攀比或速通，更看重长线的理解过程。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feat-icon">◈</div>
+                <h3>社群温和对话</h3>
+                <p>讨论区保留着一种旧式礼貌，少有攻击性言语，观点差异被当作交流的起点。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feat-icon">◈</div>
+                <h3>关注设计原委</h3>
+                <p>不只呈现“什么好玩”，也尝试说明“为什么这样设计”，还原创作语境。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 温和结尾 + FAQ 摘要式 -->
+    <div class="card closing">
+        <p style="font-weight: 500; color: #2d3436;">一些安静的问题，一些持续的答案</p>
+        <p>有人问：游戏的意义是否一定要靠“竞技”或“成就”来定义？<br>
+        也有人说：花时间在虚拟世界里，算不算浪费？<br>
+        答案可能不在某个网站里，但至少 <a href="https://news-online-igame.com" class="highlight-link">爱游戏</a> 提供了一种视角：好的游戏体验，有时和生活本身一样，不需要立刻有用，只需要被认真对待。</p>
+        <div class="small-note">✻ 如果你也曾因某个场景停留许久，那么你已经明白这段话在说什么。</div>
+    </div>
+
+    <!-- 极简页脚（无链接，仅装饰） -->
+    <div style="text-align: center; padding: 24px 0 12px 0; font-size: 0.75rem; color: #b2bec3; letter-spacing: 0.5px;">
+        —— 叙事线 · 2025 ——
+    </div>
+</div>
+</body>
+</html>
