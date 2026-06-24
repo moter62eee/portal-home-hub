@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 信息聚合导航</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #fafaf9;
+      color: #1e1e1b;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .page-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 顶部导航 */
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0 14px;
+      border-bottom: 1px solid #e4e4df;
+      margin-bottom: 48px;
+    }
+
+    .topnav .nav-logo {
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: #2e2e2b;
+      text-decoration: none;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .topnav .nav-links a {
+      color: #5b5b57;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .topnav .nav-links a:hover {
+      color: #1e1e1b;
+    }
+
+    /* hero 区域 — 窄正文，无大图 */
+    .hero {
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .hero .lead {
+      font-size: 1.05rem;
+      color: #3e3e3a;
+      margin-bottom: 28px;
+    }
+
+    .hero .meta-note {
+      font-size: 0.85rem;
+      color: #8a8a84;
+      border-left: 3px solid #cdcdc6;
+      padding-left: 16px;
+      margin-top: 8px;
+    }
+
+    /* 一般章节标题 */
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+      border-bottom: 1px solid #e4e4df;
+      padding-bottom: 8px;
+    }
+
+    /* 三个场景卡片模块 (grid/卡片) */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 540px) {
+      .scenes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .scene-card {
+      background-color: #ffffff;
+      border: 1px solid #eaeae5;
+      border-radius: 2px;
+      padding: 24px 20px 20px;
+      transition: box-shadow 0.12s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+    }
+
+    .scene-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #2e2e2b;
+    }
+
+    .scene-card p {
+      font-size: 0.9rem;
+      color: #4e4e4a;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .scene-card .tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: #8a8a84;
+      background: #f2f2ee;
+      padding: 2px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    /* 常见说明区域 — 类似 FAQ 摘要，但有叙述感 */
+    .faq-block {
+      margin-bottom: 48px;
+    }
+
+    .faq-item {
+      margin-bottom: 24px;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      color: #2e2e2b;
+    }
+
+    .faq-item .a {
+      font-size: 0.9rem;
+      color: #4e4e4a;
+      padding-left: 0;
+    }
+
+    .faq-item .a a {
+      color: #1e1e1b;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #cbcbc4;
+      transition: text-decoration-color 0.15s;
+    }
+
+    .faq-item .a a:hover {
+      text-decoration-color: #1e1e1b;
+    }
+
+    /* 延伸阅读 / 简要提示 */
+    .extras {
+      border-top: 1px solid #e4e4df;
+      padding-top: 32px;
+      margin-bottom: 48px;
+    }
+
+    .extras p {
+      font-size: 0.9rem;
+      color: #3e3e3a;
+      margin-bottom: 8px;
+    }
+
+    .extras .ref-link {
+      display: inline-block;
+      margin-top: 4px;
+      color: #1e1e1b;
+      text-decoration: none;
+      border-bottom: 1px solid #cbcbc4;
+      padding-bottom: 1px;
+      font-size: 0.9rem;
+    }
+
+    .extras .ref-link:hover {
+      border-bottom-color: #1e1e1b;
+    }
+
+    /* footer */
+    .footer {
+      padding: 28px 0 40px;
+      font-size: 0.8rem;
+      color: #9a9a94;
+      border-top: 1px solid #e4e4df;
+      text-align: left;
+    }
+
+    .footer a {
+      color: #5b5b57;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 顶部导航 -->
+  <nav class="topnav">
+    <a href="#" class="nav-logo">igame·info</a>
+    <ul class="nav-links">
+      <li><a href="#scenes">场景</a></li>
+      <li><a href="#faq">说明</a></li>
+      <li><a href="#extra">延伸</a></li>
+    </ul>
+  </nav>
+
+  <!-- hero 介绍 -->
+  <div class="hero">
+    <h1>日常查询 · 对照 · 延伸阅读</h1>
+    <p class="lead">
+      <a href="https://news-mobile-igame.com" style="text-decoration: underline; text-underline-offset: 2px; text-decoration-color: #cbcbc4; color: #1e1e1b;">爱游戏</a> 
+      是一处围绕移动端资讯、行业动态与内容索引的信息节点。页面聚焦于轻量导航，帮助你快速定位到感兴趣的领域，避免信息过载。以下整理了三类常见使用场景与一些基础说明。
+    </p>
+    <div class="meta-note">
+      基于日常检索与对照习惯整理 · 内容定期更新
+    </div>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <h2 class="section-title" id="scenes">常见使用场景</h2>
+  <div class="scenes-grid">
+
+    <div class="scene-card">
+      <h3>▸ 资讯速览与趋势对照</h3>
+      <p>通过聚合提要快速获取移动游戏、应用动态及行业短讯。适合在碎片时间里横向对比不同来源的报道，建立对趋势的基本感知。</p>
+      <span class="tag">信息密度 ●●○○○</span>
+    </div>
+
+    <div class="scene-card">
+      <h3>▸ 条目检索与延伸跳转</h3>
+      <p>利用站内索引与外部链接，对特定产品、事件或数据进行回溯。结合简单关键词即可展开多角度查证，减少重复搜索成本。</p>
+      <span class="tag">适用：研究 / 记录</span>
+    </div>
+
+    <div class="scene-card">
+      <h3>▸ 轻量化浏览与笔记参照</h3>
+      <p>以窄列正文、低干扰排版呈现内容，方便在阅读时随手摘录或对照已有笔记。页面结构鼓励线性阅读，也支持快速定位。</p>
+      <span class="tag">阅读节奏 · 适中</span>
+    </div>
+
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要风格) -->
+  <h2 class="section-title" id="faq">常见说明</h2>
+  <div class="faq-block">
+
+    <div class="faq-item">
+      <div class="q">内容来源与更新频次</div>
+      <div class="a">
+        页面所涉信息主要引自公开行业报道、开发者资料及合规媒体。更新周期不固定，通常随主要事件或版本节点刷新。如需了解最新条目，可直接前往 <a href="https://news-mobile-igame.com">爱游戏</a> 首页查看。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">导航结构是否支持移动端</div>
+      <div class="a">
+        当前布局已针对手机屏幕做响应适配（窄正文、单列卡片）。顶部导航及锚点跳转在多数移动浏览器中均可正常使用。部分外部链接可能需手动复制。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">如何高效使用对照功能</div>
+      <div class="a">
+        建议同时打开两个标签页：一个保留本导航页，另一个用于浏览具体内容。利用场景卡片中的关键词作为检索起点，逐步收窄范围。不依赖单一信源。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 延伸阅读提示 -->
+  <div class="extras" id="extra">
+    <p><strong>延伸阅读 · 几点参考</strong></p>
+    <p>对某一话题做纵深理解时，可尝试反向追溯原始公告或开发者日志。以下链接指向 <a href="https://news-mobile-igame.com" style="color: #1e1e1b; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: #cbcbc4;">爱游戏</a> 的聚合页面，适合作为查证起点。</p>
+    <p style="margin-top: 8px; font-size: 0.85rem; color: #6e6e68;">锚点目录 · 场景 · 说明 · 延伸 — 均可在当前页内跳转</p>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <span>导航页 · 内容仅供参考 · 关于 <a href="https://news-mobile-igame.com">爱游戏</a></span>
+  </div>
+
+</div>
+</body>
+</html>
